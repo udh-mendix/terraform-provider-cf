@@ -147,9 +147,13 @@ func (um *UserManager) loadGroups() (err error) {
 	if err != nil {
 		return
 	}
+	password, err:= newRandomString(32)
+	if err != nil {
+		return err
+	}
 	userResource := UAAUser{
 		Username: username,
-		Password: "password",
+		Password: password,
 		Origin:   "uaa",
 		Emails:   []UAAUserEmail{{Value: "email@domain.com"}},
 	}
